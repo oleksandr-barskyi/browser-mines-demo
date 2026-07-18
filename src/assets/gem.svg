@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Safe gem">
+  <path fill="#f4f1e8" d="M15 12h34l10 14-27 29L5 26z"/>
+  <path fill="#b7ffe0" d="M15 12h34l-8 14H23z"/>
+  <path fill="#4f86f7" d="M5 26h18l9 29z"/>
+  <path fill="#32c777" d="M59 26H41l-9 29z"/>
+  <path fill="#ffffff" opacity=".55" d="M23 26h18l-9 29z"/>
+</svg>

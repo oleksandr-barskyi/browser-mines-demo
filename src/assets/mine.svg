@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mine">
+  <circle cx="32" cy="34" r="18" fill="#151515"/>
+  <circle cx="26" cy="28" r="4" fill="#f4f1e8" opacity=".18"/>
+  <path fill="#151515" d="M29 3h6v14h-6zM29 51h6v10h-6zM3 31h13v6H3zM48 31h13v6H48zM12.6 10.4l9.9 9.9-4.2 4.2-9.9-9.9zM41.5 45.7l4.2-4.2 9.9 9.9-4.2 4.2zM51.4 10.4l4.2 4.2-9.9 9.9-4.2-4.2zM18.3 41.5l4.2 4.2-9.9 9.9-4.2-4.2z"/>
+  <circle cx="32" cy="34" r="24" fill="none" stroke="#e35a53" stroke-width="4"/>
+</svg>

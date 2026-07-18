@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Mines Demo</title>
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <p>Fake-credit game</p>
+          <h1>Browser Mines</h1>
+        </div>
+      </div>
+      <dl class="metrics" aria-label="Wallet and round status">
+        <div>
+          <dt>Balance</dt>
+          <dd id="balance">1000.00</dd>
+        </div>
+        <div>
+          <dt>Round</dt>
+          <dd id="roundStatus">Idle</dd>
+        </div>
+        <div>
+          <dt>Multiplier</dt>
+          <dd id="currentMultiplier">1.00x</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main class="app-shell">
+      <section class="play-area" aria-label="Mines game board">
+        <form class="control-strip" id="settingsForm">
+          <label>
+            <span>Bet</span>
+            <input id="betInput" type="number" min="1" max="1000" step="1" value="50" inputmode="decimal">
+          </label>
+
+          <label>
+            <span>Mines <output id="mineOutput">5</output></span>
+            <input id="minesInput" type="range" min="1" max="20" step="1" value="5">
+          </label>
+
+          <label class="seed-field">
+            <span>Client seed</span>
+            <input id="clientSeedInput" type="text" maxlength="48" value="candidate-demo-seed">
+          </label>
+
+          <button id="startButton" class="primary-button" type="submit">Start round</button>
+          <button id="cashoutButton" class="cashout-button" type="button" disabled>Cash out</button>
+          <button id="resetButton" class="ghost-button" type="button">Reset</button>
+        </form>
+
+        <div class="board-wrap">
+          <div class="board" id="board" aria-label="5 by 5 Mines board"></div>
+          <aside class="round-panel" aria-label="Round details">
+            <div>
+              <span class="label">Bet</span>
+              <strong id="roundBet">0.00</strong>
+            </div>
+            <div>
+              <span class="label">Safe picks</span>
+              <strong id="safePicks">0</strong>
+            </div>
+            <div>
+              <span class="label">Next</span>
+              <strong id="nextMultiplier">1.00x</strong>
+            </div>
+            <div>
+              <span class="label">Potential</span>
+              <strong id="potentialPayout">0.00</strong>
+            </div>
+          </aside>
+        </div>
+
+        <div class="ladder" id="payoutLadder" aria-label="Upcoming payout multipliers"></div>
+      </section>
+
+      <aside class="side-panel">
+        <section class="proof-panel" aria-label="Provably fair proof">
+          <div class="panel-heading">
+            <h2>Fairness</h2>
+            <button id="verifyButton" class="ghost-button small-button" type="button" disabled>Verify</button>
+          </div>
+
+          <dl class="proof-list">
+            <div>
+              <dt>Server hash</dt>
+              <dd id="serverHash">-</dd>
+            </div>
+            <div>
+              <dt>Server seed</dt>
+              <dd id="serverSeed">-</dd>
+            </div>
+            <div>
+              <dt>Client seed</dt>
+              <dd id="clientSeed">-</dd>
+            </div>
+            <div>
+              <dt>Nonce</dt>
+              <dd id="nonce">-</dd>
+            </div>
+            <div>
+              <dt>Mines</dt>
+              <dd id="minePositions">-</dd>
+            </div>
+          </dl>
+
+          <textarea id="proofJson" readonly spellcheck="false" aria-label="Proof JSON"></textarea>
+          <p class="verify-result" id="verifyResult">Waiting for a settled round.</p>
+        </section>
+
+        <section class="history-panel" aria-label="Round history">
+          <div class="panel-heading">
+            <h2>History</h2>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </section>
+      </aside>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

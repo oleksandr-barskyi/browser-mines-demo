@@ -1,0 +1,20 @@
+{
+  "name": "browser-mines-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Provably fair fake-credit Mines game for browser gambling/gameplay portfolio work.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test",
+    "check": "node --check server.mjs && node --check src/main.js && node --check src/game/fair.js && node --check src/game/mines.js"
+  },
+  "keywords": [
+    "browser-game",
+    "gambling-demo",
+    "provably-fair",
+    "mines",
+    "fake-credits"
+  ],
+  "license": "MIT"
+}
