@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "node server.mjs",
     "test": "node --test",
-    "check": "node --check server.mjs && node --check src/main.js && node --check src/game/fair.js && node --check src/game/mines.js"
+    "check": "node --check server.mjs && node --check api/game.js && node --check src/main.js && node --check src/game/fair.js && node --check src/game/mines.js && node --check src/game/session.js",
+    "deploy": "vercel --prod"
   },
   "keywords": [
     "browser-game",

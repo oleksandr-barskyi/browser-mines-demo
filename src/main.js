@@ -40,7 +40,7 @@ let state = {
 els.settingsForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   await withBusy(async () => {
-    const nextState = await api("/api/rounds", {
+    const nextState = await api("/api/game?action=start", {
       method: "POST",
       body: JSON.stringify({
         bet: Number(els.betInput.value),
@@ -60,7 +60,10 @@ els.cashoutButton.addEventListener("click", async () => {
   }
 
   await withBusy(async () => {
-    state = await api(`/api/rounds/${state.currentRound.id}/cashout`, { method: "POST" });
+    state = await api("/api/game?action=cashout", {
+      method: "POST",
+      body: JSON.stringify({ roundId: state.currentRound.id })
+    });
     els.verifyResult.textContent = "Ready to verify.";
     render();
   });
@@ -68,7 +71,7 @@ els.cashoutButton.addEventListener("click", async () => {
 
 els.resetButton.addEventListener("click", async () => {
   await withBusy(async () => {
-    state = await api("/api/reset", { method: "POST" });
+    state = await api("/api/game?action=reset", { method: "POST" });
     els.verifyResult.textContent = "Waiting for a settled round.";
     render();
   });
@@ -104,7 +107,7 @@ init();
 
 async function init() {
   try {
-    state = await api("/api/state");
+    state = await api("/api/game?action=state");
   } catch (error) {
     showToast(error.message);
   }
@@ -182,9 +185,9 @@ async function reveal(cellIndex) {
   }
 
   await withBusy(async () => {
-    state = await api(`/api/rounds/${round.id}/reveal`, {
+    state = await api("/api/game?action=reveal", {
       method: "POST",
-      body: JSON.stringify({ cellIndex })
+      body: JSON.stringify({ roundId: round.id, cellIndex })
     });
 
     if (state.currentRound.status === "busted") {

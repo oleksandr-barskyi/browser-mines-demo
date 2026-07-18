@@ -10,6 +10,7 @@ A compact browser gambling-style game using fake credits only. It is built to sh
 - Provably fair proof using `serverSeedHash`, `serverSeed`, `clientSeed`, and `nonce`
 - Shared game core covered by `node:test`
 - No external dependencies
+- Vercel-ready `api/game.js` function for hosted demos
 
 ## Run
 
@@ -29,11 +30,22 @@ node --check src/main.js
 
 If you use PowerShell and `npm` scripts are blocked by the execution policy, run the `node` commands above directly or use `npm.cmd run test`.
 
+## Deploy
+
+```bash
+vercel --prod
+```
+
+The Vercel deployment uses `api/game.js`, a single serverless endpoint that mirrors the local API. The demo keeps game state in memory, so a production build should replace this with Redis, Postgres, or another persistent store before handling real users.
+
 ## Project Shape
 
 ```txt
 browser-mines-demo/
+  api/
+    game.js          # Vercel serverless API endpoint
   server.mjs          # Static server + small in-memory game API
+  vercel.json
   src/
     main.js           # Browser UI
     styles.css
@@ -41,6 +53,7 @@ browser-mines-demo/
     game/
       fair.js         # Seed hashing, HMAC stream, proof verification
       mines.js        # Payout math and round transitions
+      session.js      # Shared in-memory round lifecycle
   test/
     fair.test.mjs
     mines.test.mjs
